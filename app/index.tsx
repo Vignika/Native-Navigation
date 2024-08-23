@@ -1,22 +1,20 @@
+import { NavigationContainer } from "@react-navigation/native";
 import { useRouter } from "expo-router";
 import { Button, Text, View } from "react-native";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Home from "./home";
 
-const router = useRouter();
+// const router = useRouter();
+
+const Stack = createNativeStackNavigator();
 
 export default function Index() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => router.push('/home')}
-      />
-    </View>
+    <NavigationContainer independent={true}>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+      </Stack.Navigator>
+      </NavigationContainer>
+  
   );
 }
