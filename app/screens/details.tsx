@@ -1,35 +1,59 @@
-import React from "react";
-import { Button, Text, View } from "react-native";
+import { useEffect } from "react";
+import { Text, View, StyleSheet, Platform, Button } from "react-native";
 
-function Details({ route, navigation }) {
-  const { itemId, otherParam } = route.params;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    ...Platform.select({
+      ios: {
+        backgroundColor: "red",
+      },
+      android: {
+        backgroundColor: "green",
+      },
+      default: {
+        // other platforms, web for example
+        backgroundColor: "white",
+      },
+    }),
+  },
+});
+
+export default function Home({ navigation, route }) {
+  useEffect(() => {
+    if (route.params?.post) {
+    }
+  }, [route.params?.post]);
 
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Details Screen</Text>
-      <Text>itemId: {JSON.stringify(itemId)}</Text>
-      <Text>otherParam: {JSON.stringify(otherParam)}</Text>
+    <View style={styles.container}>
+      <Text>Home screen</Text>
+      <Text style={{ margin: 10 }}>Post: {route.params?.post}</Text>
+
       <Button
-        title="Go to Details... again"
-        onPress={() => navigation.push("Details")}
+        title="Go to Details"
+        onPress={() =>
+          navigation.navigate("Details", {
+            itemId: 86,
+            otherParam: "anything you want here",
+          })
+        }
+      />
+      <Button
+        title="Create post"
+        onPress={() =>
+          navigation.navigate("CreatePost", { title: "Custom createpost" })
+        }
       />
 
-      <Button title="Go to Home" onPress={() => navigation.navigate("Home")} />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
       <Button
-        title="Go back to first screen in stack"
-        onPress={() => navigation.popToTop()}
-      />
-      <Button
-        title="Update param"
+        title="Go to Profile"
         onPress={() =>
-          navigation.setParams({
-            itemId: Math.floor(Math.random() * 100),
-          })
+          navigation.navigate("Profile", { name: "Welcome abdul" })
         }
       />
     </View>
   );
 }
-
-export default Details;

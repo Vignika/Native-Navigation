@@ -51,7 +51,7 @@ export default function Home({ navigation, route }) {
       <Button
         title="Go to Profile"
         onPress={() =>
-          navigation.navigate("Profile", { name: "Welcome abdul" })
+          navigation.navigate("Profile", { name: "Welcome to Hyderabad Thanmai" })
         }
       />
     </View>
