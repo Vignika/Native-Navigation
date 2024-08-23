@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import Home from "./home";
 import Details from "./screens/details";
 import CreatePostScreen from "./screens/createPost";
+import profile from "./screens/profile";
 
 const router = useRouter();
 
@@ -13,21 +14,38 @@ const Stack = createNativeStackNavigator();
 export default function Index() {
   return (
     <NavigationContainer independent={true}>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: "#f4511e",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      >
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{ title: "Dashboard" }}
+          options={{ title: "My Home" }}
         />
         <Stack.Screen
           name="Details"
           component={Details}
           initialParams={{ itemId: 42 }}
         />
-         <Stack.Screen
+        <Stack.Screen
           name="CreatePost"
           component={CreatePostScreen}
           options={{ title: "write mail" }}
+        />
+
+        <Stack.Screen
+          name="Profile"
+          component={profile}
+          options={({ route }) => ({ title: route.params.name })}
         />
       </Stack.Navigator>
     </NavigationContainer>
