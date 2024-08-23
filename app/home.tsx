@@ -1,4 +1,4 @@
-import { Text, View, Platform, StyleSheet } from "react-native";
+import { Text, View, Platform, StyleSheet,Button } from "react-native";
 
 // const styles = StyleSheet.create({
 //     bigBlue: {
@@ -26,11 +26,15 @@ const styles = StyleSheet.create({
     }),
 },
 });
-export default function Home() {
-  return (
-    <View style={styles.container}>
-      <Text >Home screen</Text>
-    </View>
+export default function Home({navigation}) {
+    return (
+        <View style={styles.container}>
+          <Text >Home screen</Text>
+          <Button
+            title="Go to Details"
+            onPress={() => navigation.navigate('Details')}
+          />
+        </View>
   );
 }
 
