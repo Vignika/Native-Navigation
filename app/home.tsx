@@ -32,9 +32,15 @@ export default function Home({navigation}) {
           <Text >Home screen</Text>
           <Button
             title="Go to Details"
-            onPress={() => navigation.navigate('Details')}
+            onPress={() => navigation.navigate('Details',
+                {
+                  itemId: 86,
+                  otherParam: 'anything you want here',
+                }
+              )}
           />
         </View>
-  );
+  );  
+
 }
 
